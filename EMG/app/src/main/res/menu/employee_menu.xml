@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_dashboard"
+            android:title="Dashboard"
+            android:icon="@drawable/ic_baseline_home_24"></item>
+        <item android:id="@+id/leave_request"
+            android:title="Leave Request"
+            android:icon="@drawable/ic_baseline_rss_feed_24"></item>
+        <item android:id="@+id/Leave_status"
+            android:title="Leave Status"
+            android:icon="@drawable/ic_baseline_supervised_user_circle_24"></item>
+        <item android:id="@+id/attendance"
+            android:title="Attendance"
+            android:icon="@drawable/ic_baseline_insert_drive_file_24"></item>
+        <item android:id="@+id/Calendar"
+            android:title="Calendar"
+            android:icon="@drawable/ic_baseline_qr_code_scanner_24"></item>
+    </group>
+</menu>

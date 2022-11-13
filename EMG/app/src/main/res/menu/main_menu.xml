@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:checkableBehavior="single">
+    <item android:id="@+id/nav_dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_baseline_home_24"></item>
+    <item android:id="@+id/newsfeed"
+        android:title="Newsfeed"
+        android:icon="@drawable/ic_baseline_rss_feed_24"></item>
+    <item android:id="@+id/Employees"
+        android:title="Employees"
+        android:icon="@drawable/ic_baseline_supervised_user_circle_24"></item>
+    <item android:id="@+id/leaves"
+        android:title="Leave"
+        android:icon="@drawable/ic_baseline_insert_drive_file_24"></item>
+    <item android:id="@+id/qr"
+        android:title="Scan QR"
+        android:icon="@drawable/ic_baseline_qr_code_scanner_24"></item>
+    <item android:id="@+id/attendance"
+        android:title="Attendance"
+        android:icon="@drawable/ic_baseline_calendar_month_24"></item>
+</group>
+</menu>

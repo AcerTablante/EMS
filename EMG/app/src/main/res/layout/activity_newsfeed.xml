@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    tools:context=".MainActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<!--  <TextView-->
+<!--      android:layout_width="wrap_content"-->
+<!--      android:layout_height="wrap_content"-->
+<!--      android:layout_weight="0"-->
+<!--      android:layout_marginLeft="30dp"-->
+<!--      android:layout_margintop="50dp"-->
+<!--    android:text="Newsfeed"-->
+<!--    android:textSize="40sp"-->
+<!--    android:textStyle="bold"-->
+<!--    android:textColor="@color/black"></TextView>-->
+  <androidx.recyclerview.widget.RecyclerView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+  </androidx.recyclerview.widget.RecyclerView>
+  <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create"></Button>
+  </LinearLayout>
+
+
+</LinearLayout>
+  <com.google.android.material.navigation.NavigationView
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:id="@+id/navigationView"
+      app:headerLayout="@layout/header_menu"
+      app:menu="@menu/main_menu"
+      android:fitsSystemWindows="true"
+      android:layout_gravity="start"
+      ></com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/search_bg">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/leave_container">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/profile_pic"
+        android:src="@drawable/emp_icon"
+        ></de.hdodenhof.circleimageview.CircleImageView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/profile_pic">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Name:"
+        android:id="@+id/tv_name_tag"
+        android:textColor="@color/black"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/tv_name_tag"
+        android:id="@+id/tv_name"
+        android:textStyle="bold"
+        android:text="Juan Dela Cruz"
+        android:textColor="@color/black"/>
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:layout_marginLeft="20dp"
+         android:text="Position:"
+         android:layout_below="@id/tv_name_tag"
+         android:id="@+id/tv_position_tag"
+         android:textColor="@color/black"
+         >
+     </TextView>
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tv_name"
+            android:layout_toRightOf="@+id/tv_position_tag"
+            android:id="@+id/tv_position"
+            android:textStyle="bold"
+            android:text="Admin"
+            android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="Leave Date:"
+                android:layout_below="@id/tv_position_tag"
+                android:id="@+id/tv_leave_tag"
+                android:textColor="@color/black"
+                ></TextView>
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/tv_position"
+            android:layout_toRightOf="@+id/tv_leave_tag"
+            android:id="@+id/tv_leave"
+            android:textStyle="bold"
+            android:text="November 20, 2022"
+            android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Reason:"
+                android:layout_below="@id/tv_leave_tag"
+                android:id="@+id/tv_reason_tag"
+                android:textColor="@color/black"
+                ></TextView>
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/tv_leave"
+            android:layout_toRightOf="@+id/tv_reason_tag"
+            android:id="@+id/tv_reason"
+            android:textStyle="bold"
+            android:text="Feeling Sick"
+            android:textColor="@color/black"/>
+        </RelativeLayout>
+    </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_below="@+id/leave_container">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:backgroundTint="#00FF00"
+            android:layout_marginRight="8dp"
+            android:text="Approve"></Button>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF0000"
+            android:textColor="@color/black"
+
+            android:text="Decline"></Button>
+
+
+    </LinearLayout>
+
+
+
+
+    <!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_toEndOf="@+id/profile_pic"-->
+<!--        android:layout_marginStart="5dp"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_toRightOf="@+id/profile_pic"-->
+<!--        android:layout_marginLeft="5dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/username"-->
+<!--            android:text="Name:"-->
+<!--            android:maxLines="1"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/black"></TextView>-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/fullname"-->
+<!--            android:text="Juan Dela Cruz"-->
+<!--            android:maxLines="1"-->
+<!--            android:textColor="@color/black"></TextView>-->
+<!--    </LinearLayout>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnDelete"-->
+<!--        android:layout_width="99dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="5dp"-->
+<!--        android:layout_marginRight="5dp"-->
+<!--        android:text="Delete"-->
+<!--        android:backgroundTint="#ff0000"-->
+<!--        android:textAllCaps="false"></Button>-->
+<!--    <Button-->
+<!--        android:id="@+id/btnUpdate"-->
+<!--        android:layout_width="99dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignRight="@+id/btnDelete"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        android:layout_marginEnd="5dp"-->
+<!--        android:layout_marginRight="5dp"-->
+<!--        android:text="Delete"-->
+<!--        android:backgroundTint="#ff0000"-->
+<!--        android:textAllCaps="false"></Button>-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnfollow"-->
+    <!--        android:layout_width="99dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_alignParentRight="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_marginEnd="5dp"-->
+    <!--        android:layout_marginRight="5dp"-->
+    <!--        android:text="Follow"-->
+    <!--        android:textAllCaps="false"></Button>-->
+
+
+</RelativeLayout>
