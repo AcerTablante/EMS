@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.emg.admin.add_employee.AddEmployeeActivity;
 import com.example.emg.admin.view_employee.ViewEmployeeActivity;
 import com.example.emg.model.Employee;
 import com.example.emg.R;
@@ -34,16 +36,17 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
          this.employeeList = employeeList;
          this.employeeContext=context;
      }
-
      public class MyViewHolder extends RecyclerView.ViewHolder{
          private TextView name;
          private ImageView profile;
-         private Button btnView;
+         private Button btnEdit;
+         private RelativeLayout relativeLayout;
          public MyViewHolder(final View view){
              super(view);
+             relativeLayout = view.findViewById(R.id.employeeContainer);
              name = view.findViewById(R.id.fullname);
              profile = view.findViewById(R.id.profile_pic);
-             btnView = view.findViewById(R.id.btnView);
+             btnEdit = view.findViewById(R.id.btnEdit);
          }
      }
 
@@ -71,11 +74,19 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
         });
         String name = employeeList.get(position).name;
         holder.name.setText(name);
-        holder.btnView.setOnClickListener(new View.OnClickListener() {
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(employeeContext, AddEmployeeActivity.class);
+                intent.putExtra("employee",employeeList.get(position));
+                intent.putExtra("imageLink",imageLink);
+                employeeContext.startActivity(intent);
+            }
+        });
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(employeeContext, ViewEmployeeActivity.class);
-
                 intent.putExtra("employee",employeeList.get(position));
                 intent.putExtra("imageLink",imageLink);
                 employeeContext.startActivity(intent);

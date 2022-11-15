@@ -36,6 +36,8 @@ public class AddEmployeeActivity extends AppCompatActivity implements AddEmploye
     String str_fullname,str_address,str_phone,str_department,str_position,str_email,str_password;
     Button btn_upload,btn_submit;
     LoadingDialog dialog;
+    Employee employee;
+    Uri imagelink;
     private Uri mImageUri;
     private static final int PICK_IMAGE_REQUEST = 1;
     private StorageReference mStorageRef;
@@ -44,6 +46,8 @@ public class AddEmployeeActivity extends AppCompatActivity implements AddEmploye
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_employee);
         initializeView();
+        getDatafromIntent();
+        populateFields();
         presenter = new AddEmployeePresenter(this);
     }
     private void initializeView(){
@@ -61,7 +65,26 @@ public class AddEmployeeActivity extends AppCompatActivity implements AddEmploye
         btn_submit.setOnClickListener(this);
         btn_upload.setOnClickListener(this);
     }
+    private void getDatafromIntent(){
+        Intent intent = getIntent();
+        employee = intent.getParcelableExtra("employee");
+        imagelink = intent.getParcelableExtra("imageLink");
+    }
     private void populateFields(){
+       if(employee!=null){
+           fullname.setText(employee.name);
+           address.setText(employee.address);
+           phone.setText(employee.phone);
+           department.setText(employee.department);
+           position.setText(employee.position);
+           email.setText(employee.email);
+           email.setEnabled(false);
+           password.setText(employee.password);
+           mImageUri = employee.imageURI;
+           Picasso.get().load(employee.imageURI).into(profile_pic);
+       }
+    }
+    private void getDataFromFields(){
         str_fullname = fullname.getText().toString().trim();
         str_address = address.getText().toString().trim();
         str_phone = phone.getText().toString().trim();
@@ -89,7 +112,7 @@ public class AddEmployeeActivity extends AppCompatActivity implements AddEmploye
                 browseImage();
                 break;
             case R.id.btnAdd:
-                populateFields();
+                getDataFromFields();
                 if(str_fullname.isEmpty()||str_address.isEmpty()||str_phone.isEmpty()|str_department.isEmpty()||str_position.isEmpty()||str_email.isEmpty()||str_password.isEmpty()){
                     Toast.makeText(this,"All fields must be filled up!",Toast.LENGTH_SHORT).show();
                 }else if(!validateEmail(str_email)){
@@ -101,10 +124,20 @@ public class AddEmployeeActivity extends AppCompatActivity implements AddEmploye
                 }
                 else{
                     dialog.startLoadingDialog();
-                    Employee employee = new Employee(str_fullname,str_address,str_phone,str_email,str_department,str_position,str_password);
-                    employee.setImageURL(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
-                    employee.setImageURI(mImageUri);
-                    presenter.register(employee);
+                    if(employee!=null){
+                        Employee new_employee = new Employee(str_fullname,str_address,str_phone,str_email,str_department,str_position,str_password,employee.id);
+                        if(employee.imageURI!=null){
+                            new_employee.setImageURI(employee.imageURI);
+                        }else{
+                            new_employee.setImageURL(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
+                            new_employee.setImageURI(mImageUri);
+                        }
+                        presenter.editEmployee(new_employee);
+                    }
+                    Employee new_employee = new Employee(str_fullname,str_address,str_phone,str_email,str_department,str_position,str_password);
+                    new_employee.setImageURL(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
+                    new_employee.setImageURI(mImageUri);
+                    presenter.register(new_employee);
                 }
                 break;
         }
@@ -134,6 +167,13 @@ public class AddEmployeeActivity extends AppCompatActivity implements AddEmploye
     }
 
     @Override
+    public void editEmployeeSuccess() {
+        dialog.dismissDialog();
+        Toast.makeText(this,"Successfully Updated Employee",Toast.LENGTH_LONG).show();
+        startActivity(new Intent(AddEmployeeActivity.this, EmployeeActivity.class));
+    }
+
+    @Override
     public void addEmployeeFailed() {
         dialog.dismissDialog();
         Toast.makeText(this,"Something went wrong",Toast.LENGTH_LONG).show();
@@ -141,6 +181,11 @@ public class AddEmployeeActivity extends AppCompatActivity implements AddEmploye
 
     @Override
     public void imageUploadMessage(String message) {
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void message(String message) {
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 }

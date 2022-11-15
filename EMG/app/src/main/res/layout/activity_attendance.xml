@@ -14,13 +14,23 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Attendance"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:text="Attendance"
+                android:text="10-10-2020"
+                android:id="@+id/date"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -39,6 +49,22 @@
             android:layout_weight="0.8"
             android:layout_marginRight="20dp">
         </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="0.1">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/white"
+                android:id="@+id/btn_attendance_history"
+                android:text="View History"></Button>
+
+
+        </LinearLayout>
         <LinearLayout
             android:layout_gravity="right"
             android:layout_width="wrap_content"

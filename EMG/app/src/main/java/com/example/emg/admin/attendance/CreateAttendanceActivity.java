@@ -17,7 +17,9 @@ import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.budiyev.android.codescanner.ScanMode;
 import com.example.emg.R;
+import com.example.emg.admin.add_employee.AddEmployeeActivity;
 import com.example.emg.base.AdminBase;
+import com.example.emg.utils.LoadingDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.google.zxing.Result;
 
@@ -28,6 +30,8 @@ public class CreateAttendanceActivity extends AdminBase implements CreateAttenda
     ActionBarDrawerToggle actionBarDrawerToggle;
     CreateAttendacePresenter presenter;
     private CodeScanner mCodeScanner;
+    LoadingDialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,7 @@ public class CreateAttendanceActivity extends AdminBase implements CreateAttenda
         initializeView();
         initializeNavBar();
         mCodeScanner.setScanMode(ScanMode.CONTINUOUS);
-        mCodeScanner.setCamera(mCodeScanner.CAMERA_FRONT);
+        mCodeScanner.setCamera(mCodeScanner.CAMERA_BACK);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull final Result result) {
@@ -45,6 +49,13 @@ public class CreateAttendanceActivity extends AdminBase implements CreateAttenda
                     @Override
                     public void run() {
                         Toast.makeText(CreateAttendanceActivity.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        presenter.addAttendance(result.getText());
+                        dialog.startLoadingDialog();
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
@@ -52,6 +63,7 @@ public class CreateAttendanceActivity extends AdminBase implements CreateAttenda
         mCodeScanner.startPreview();
     }
     private void initializeView(){
+        dialog = new LoadingDialog(CreateAttendanceActivity.this);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
@@ -85,5 +97,17 @@ public class CreateAttendanceActivity extends AdminBase implements CreateAttenda
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void attendanceSuccess() {
+        dialog.dismissDialog();
+        Toast.makeText(this,"Attendance Added",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void attendanceFailed(String message) {
+        dialog.dismissDialog();
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 }

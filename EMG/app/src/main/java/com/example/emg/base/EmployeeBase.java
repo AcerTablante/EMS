@@ -15,7 +15,11 @@ import com.example.emg.admin.attendance.CreateAttendanceActivity;
 import com.example.emg.admin.employee.EmployeeActivity;
 import com.example.emg.admin.leave.Leave;
 import com.example.emg.admin.view_attendance.AttendanceActivity;
+import com.example.emg.employee.calendar.Calendar;
 import com.example.emg.employee.dashboard.EmployeeDashboard;
+import com.example.emg.employee.leave_request.LeaveRequestActivity;
+import com.example.emg.login.Login;
+import com.example.emg.model.LeaveRequest;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -28,6 +32,18 @@ public abstract class EmployeeBase extends AppCompatActivity {
                     case R.id.nav_dashboard:
                         drawerLayout.closeDrawer(GravityCompat.START);
                         context.startActivity(new Intent(context, EmployeeDashboard.class));
+                        break;
+                    case R.id.Calendar:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        context.startActivity(new Intent(context, Calendar.class));
+                        break;
+                    case R.id.leave_request:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        context.startActivity(new Intent(context, LeaveRequestActivity.class));
+                        break;
+                    case R.id.exit:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        context.startActivity(new Intent(context, Login.class));
                         break;
                 }
                 return true;

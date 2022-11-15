@@ -15,6 +15,7 @@ import com.example.emg.R;
 import com.example.emg.admin.employee.EmployeeActivity;
 import com.example.emg.admin.attendance.CreateAttendanceActivity;
 
+import com.example.emg.login.Login;
 import com.google.android.material.navigation.NavigationView;
 
 public abstract class AdminBase extends AppCompatActivity {
@@ -46,6 +47,10 @@ public abstract class AdminBase extends AppCompatActivity {
                     case R.id.attendance:
                         drawerLayout.closeDrawer(GravityCompat.START);
                         context.startActivity(new Intent(context, AttendanceActivity.class));
+                        break;
+                    case R.id.exit:
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        context.startActivity(new Intent(context, Login.class));
                         break;
                 }
                 return true;

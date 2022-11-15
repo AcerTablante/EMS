@@ -30,7 +30,6 @@ public class EmployeePresenter {
                 list.add(employee);
             }
         }
-
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
 

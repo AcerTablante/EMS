@@ -58,7 +58,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="5dp"
                     android:layout_marginBottom="10dp"
-                    android:text="John Cena"
+                    android:text="Juan Dela Cruz"
                     android:layout_toRightOf="@+id/name"
                     android:id="@+id/tv_name"
                     android:textSize="20sp"

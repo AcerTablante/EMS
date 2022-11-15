@@ -3,8 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
-    android:layout_marginBottom="5dp"
-    android:background="@drawable/search_bg">
+    android:background="@drawable/search_bg"
+    android:focusable="true"
+    android:id="@+id/employeeContainer"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_marginBottom="5dp">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -40,7 +44,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnView"
+        android:id="@+id/btnEdit"
         android:layout_width="99dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -48,7 +52,7 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
-        android:text="View"
+        android:text="Edit"
         android:backgroundTint="@color/blue"
         android:textAllCaps="false"></Button>
 
@@ -64,6 +68,5 @@
 <!--        android:layout_marginRight="5dp"-->
 <!--        android:text="Follow"-->
 <!--        android:textAllCaps="false"></Button>-->
-
 
 </RelativeLayout>
