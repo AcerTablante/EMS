@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.emg.admin.leave.MainLeave;
 import com.example.emg.admin.news.NewsActivity;
 import com.example.emg.admin.view_attendance.AttendanceActivity;
 import com.example.emg.admin.leave.Leave;
@@ -17,6 +18,7 @@ import com.example.emg.admin.attendance.CreateAttendanceActivity;
 
 import com.example.emg.login.Login;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public abstract class AdminBase extends AppCompatActivity {
     public void adminNavigation(NavigationView nav, DrawerLayout drawerLayout, Context context){
@@ -38,7 +40,7 @@ public abstract class AdminBase extends AppCompatActivity {
                         break;
                     case R.id.leaves:
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        context.startActivity(new Intent(context, Leave.class));
+                        context.startActivity(new Intent(context, MainLeave.class));
                         break;
                     case R.id.qr:
                         context.startActivity(new Intent(context, CreateAttendanceActivity.class));
@@ -49,6 +51,8 @@ public abstract class AdminBase extends AppCompatActivity {
                         context.startActivity(new Intent(context, AttendanceActivity.class));
                         break;
                     case R.id.exit:
+                        FirebaseAuth.getInstance().signOut();
+                        context.getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE).edit().clear().apply();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         context.startActivity(new Intent(context, Login.class));
                         break;

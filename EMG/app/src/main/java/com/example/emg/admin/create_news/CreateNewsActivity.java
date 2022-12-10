@@ -18,8 +18,10 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.emg.R;
+import com.example.emg.admin.add_employee.AddEmployeeActivity;
 import com.example.emg.admin.news.NewsActivity;
 import com.example.emg.model.News;
+import com.example.emg.utils.LoadingDialog;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -34,6 +36,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.UUID;
+
 public class CreateNewsActivity extends AppCompatActivity implements View.OnClickListener {
     private Uri mImageUri;
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -42,12 +46,38 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
     TextInputEditText newsTitle,newsBody;
     DatabaseReference database;
     Integer newsCount= 0;
+    News news;
+    LoadingDialog dialog;
+    String news_id;
+    final StorageReference mStorageReference = FirebaseStorage.getInstance().getReference("news");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_news);
         initializeView();
         getNewsCount();
+        dialog = new LoadingDialog(CreateNewsActivity.this);
+        getDatafromIntent();
+    }
+    private void getDatafromIntent(){
+        Intent intent = getIntent();
+        news = intent.getParcelableExtra("news");
+        if(news != null){
+            newsTitle.setText(news.title);
+            newsBody.setText(news.body);
+            mStorageReference.child(news.image_name).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.get().load(uri).into(news_image);
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+        }
     }
     private void initializeView(){
         news_image = findViewById(R.id.newsImage);
@@ -80,7 +110,12 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
                 break;
             case R.id.btn_create_news:
                 if(newsTitle.getText().toString().trim()!=null||newsBody.getText().toString()!=null){
-                    createNews(newsTitle.getText().toString().trim(),newsBody.getText().toString());
+                    if(news!=null){
+                        createNews(newsTitle.getText().toString().trim(),newsBody.getText().toString(),news.id);
+                    }else{
+                        createNews(newsTitle.getText().toString().trim(),newsBody.getText().toString(),UUID.randomUUID().toString());
+                    }
+
                 }else{
                     Toast.makeText(CreateNewsActivity.this,"Missing Fields",Toast.LENGTH_LONG).show();
                 }
@@ -93,24 +128,50 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
         return mime.getExtensionFromMimeType(cr.getType(uri));
     }
 
-    private void createNews(String title,String body) {
+    private void createNews(String title,String body,String id) {
+        dialog.startLoadingDialog();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("News");
-        final StorageReference mStorageReference = FirebaseStorage.getInstance().getReference("news");
-        Integer final_count = newsCount++;
-        StorageReference fileReference = mStorageReference.child(final_count+"."+getFileExtension(mImageUri));
-        fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                News news = new News(title,body,final_count.toString()+"."+getFileExtension(mImageUri));
-                myRef.child(newsCount.toString()).setValue(news).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(CreateNewsActivity.this,"Successfully Added News",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(CreateNewsActivity.this, NewsActivity.class);
-                    startActivity(intent);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
+        StorageReference fileReference;
+        String final_count = id;
+        if (news != null) {
+            if(mImageUri!=null){
+                fileReference = mStorageReference.child(news.image_name);
+                fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        News new_news;
+                        new_news = new News(news.id,title,body,news.id+"."+getFileExtension(mImageUri));
+                        myRef.child(news.id).setValue(new_news).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(CreateNewsActivity.this,"Successfully Added News",Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(CreateNewsActivity.this, NewsActivity.class);
+                                startActivity(intent);
+                                dialog.dismissDialog();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(CreateNewsActivity.this,e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                                Log.e("firebaseError",e.getLocalizedMessage());
+                                Log.e("firebaseError",e.getMessage());
+                            }
+                        });
+                    }
+                });
+            }else{
+                News new_news;
+                new_news = new News(news.id,title,body,news.image_name);
+                myRef.child(news.id).setValue(new_news).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(CreateNewsActivity.this,"Successfully Added News",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(CreateNewsActivity.this, NewsActivity.class);
+                        startActivity(intent);
+                        dialog.dismissDialog();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(CreateNewsActivity.this,e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
@@ -119,7 +180,33 @@ public class CreateNewsActivity extends AppCompatActivity implements View.OnClic
                     }
                 });
             }
-        });
+        }else{
+            fileReference = mStorageReference.child(final_count+"."+getFileExtension(mImageUri));
+            fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    News new_news;
+                    new_news = new News(final_count,title,body,final_count.toString()+"."+getFileExtension(mImageUri));
+                    myRef.child(final_count).setValue(new_news).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(CreateNewsActivity.this,"Successfully Added News",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(CreateNewsActivity.this, NewsActivity.class);
+                            startActivity(intent);
+                            dialog.dismissDialog();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(CreateNewsActivity.this,e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                            Log.e("firebaseError",e.getLocalizedMessage());
+                            Log.e("firebaseError",e.getMessage());
+                        }
+                    });
+                }
+            });
+        }
+
     }
     private void getNewsCount(){
         database = FirebaseDatabase.getInstance().getReference("News");

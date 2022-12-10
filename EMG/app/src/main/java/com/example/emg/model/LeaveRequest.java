@@ -2,47 +2,37 @@ package com.example.emg.model;
 
 
 public class LeaveRequest {
-    String name;
-    String position;
-    String leave_date;
-    String reason;
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public LeaveRequest(String user_id, String leave_id, String name, String leave_type, String position, String leave_date_from, String leave_date_to, String reason, String status) {
+        this.user_id = user_id;
+        this.leave_id = leave_id;
         this.name = name;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
+        this.leave_type = leave_type;
         this.position = position;
-    }
-
-    public String getLeave_date() {
-        return leave_date;
-    }
-
-    public void setLeave_date(String leave_date) {
-        this.leave_date = leave_date;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
+        this.leave_date_from = leave_date_from;
+        this.leave_date_to = leave_date_to;
         this.reason = reason;
+        this.status = status;
+    }
+
+   public String user_id;
+   public String leave_id;
+   public String name;
+   public String leave_type;
+   public String position;
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String leave_date_from;
+   public String leave_date_to;
+   public String reason;
+   public String status;
+
+
+
+    public LeaveRequest() {
     }
 
 
-    public LeaveRequest(String name, String position, String leave_date, String reason) {
-        this.name = name;
-        this.position = position;
-        this.leave_date = leave_date;
-        this.reason = reason;
-    }
 }

@@ -6,15 +6,17 @@ public class Attendance {
     public String date;
     public String attendance_type;
     public String time;
+    public String time_out;
     public Attendance(){
 
     }
 
-    public Attendance(String id, String date, String attendance_type, String time) {
+    public Attendance(String id, String date, String attendance_type, String time,String time_out) {
         this.id = id;
         this.date = date;
         this.attendance_type = attendance_type;
         this.time = time;
+        this.time_out = time_out;
     }
 
     public String getName() {

@@ -74,6 +74,7 @@
                 android:hint="Body"
                 android:inputType="textMultiLine"
                 android:overScrollMode="always"
+                android:gravity="top"
                 android:scrollbarStyle="insideInset"
                 android:maxLines="8"
                 android:minLines="5"

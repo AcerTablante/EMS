@@ -10,12 +10,6 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,198 +25,89 @@
                 android:textStyle="bold"
                 android:textColor="@color/black">
             </TextView>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:text="NAME:"
-                android:id="@+id/name"
-                android:textSize="20sp"
-                android:textColor="@color/black">
-            </TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Juan Dela Cruz"
-                    android:layout_toRightOf="@+id/name"
-                    android:id="@+id/tv_name"
-                    android:textSize="20sp"
-                    android:textColor="@color/black">
-                </TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:layout_below="@+id/name"
-                    android:text="EMPLOYEE ID:"
-                    android:id="@+id/id"
-                    android:textSize="20sp"
-                    android:textColor="@color/black">
-                </TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="1234"
-                    android:layout_toRightOf="@+id/id"
-                    android:layout_below="@+id/tv_name"
-                    android:id="@+id/tv_id"
-                    android:textSize="20sp"
-                    android:textColor="@color/black">
-                </TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_below="@+id/tv_name"
-                    android:text="DEPARTMENT:"
-                    android:layout_toLeftOf="@+id/tv_department"
-                    android:id="@+id/department"
-                    android:textSize="20sp"
-                    android:textColor="@color/black">
-                </TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/tv_name"
-                    android:text="IT"
-                    android:id="@+id/tv_department"
-                    android:textSize="20sp"
-                    android:textColor="@color/black">
-                </TextView>
-
-            </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-           <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="10dp"
-               android:text="DATE BEGIN:"
-               android:layout_marginBottom="5sp"
-               android:textSize="20sp"
-               android:textColor="@color/black"
-               android:id="@+id/date_begin">
-           </TextView>
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Date Begin"
-                android:gravity="center"
-                android:layout_toRightOf="@id/date_begin"
-                ></EditText>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TO"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@id/date_begin"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:id="@+id/to">
-                </TextView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="DATE END:"
-                    android:layout_marginRight="20dp"
-                    android:layout_below="@id/to"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="10dp"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:id="@+id/date_end">
-                </TextView>
-                <EditText
+                app:helperTextTextColor="@color/red"
+                android:layout_margin="10dp"
+                app:endIconMode="clear_text"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Date End:"
-                    android:gravity="center"
-                    android:layout_below="@+id/to"
-                    android:layout_toRightOf="@id/date_end"></EditText>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TYPE OF LEAVE:"
-                    android:layout_below="@id/date_end"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="30dp"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:id="@+id/type">
-                </TextView>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/type"
-                    android:layout_marginTop="25dp"
-                    android:layout_below="@id/date_end"
-                    ></EditText>
-            </RelativeLayout>
+                    android:layout_height="50dp"
+                    android:hint="Type of Leave"
+                    android:id="@+id/leave_type"></com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="REASON:"
-                android:layout_below="@id/type"
-                android:layout_marginBottom="5dp"
-                android:textSize="20sp"
                 android:textColor="@color/black"
-                android:id="@+id/reason">
-            </TextView>
+                android:layout_marginLeft="10dp"
+                android:text="Enter a leave type"></TextView>
             <EditText
                 android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:editable="false"
+                android:padding="10dp"
+                android:hint="From"
+                android:background="@drawable/search_bg"
+                android:id="@+id/leave_from"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:lines="6"
-                android:maxLines="5"
-                android:minLines="1"
-                android:scrollbars="vertical" />
-        </LinearLayout>
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:text="Choose a From date"></TextView>
 
-    </LinearLayout>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:editable="false"
+                    android:padding="10dp"
+                    android:hint="To"
+                    android:background="@drawable/search_bg"
+                    android:id="@+id/leave_to"></EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_margin="10dp"
+
+                android:text="Choose a to date"></TextView>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                app:helperTextTextColor="@color/red"
+                android:layout_margin="10dp"
+                app:endIconMode="clear_text"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Reason"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:maxLines="8"
+                    android:minLines="5"
+                    android:id="@+id/leave_reason"></com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_marginBottom="30dp"
-            android:id="@+id/btn_add_employee"
+            android:id="@+id/btn_add_leave"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:text="File Leave"
-            android:backgroundTint="#00FF00"></Button>
+            android:backgroundTint="@color/bluecolor"></Button>
+
     </RelativeLayout>
 
 
@@ -248,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navigationView"
-        app:headerLayout="@layout/header_menu"
+        app:headerLayout="@layout/header_menu_employee"
         app:menu="@menu/employee_menu"
         android:fitsSystemWindows="true"
         android:layout_gravity="start"

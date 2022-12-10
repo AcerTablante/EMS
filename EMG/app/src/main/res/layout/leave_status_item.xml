@@ -11,6 +11,15 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/emp_icon"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentRight="true"
+                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,39 +45,14 @@
                 android:textSize="15sp"
                 android:textColor="@color/black">
             </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:layout_toLeftOf="@id/tv_typeLeave"
-                android:layout_marginBottom="10dp"
-                android:text="Type of Leave:"
-                android:id="@+id/typeLeave"
-                android:textSize="15sp"
-                android:textColor="@color/black">
-            </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_alignParentRight="true"
-                android:text="Sick Leave"
-                android:layout_marginRight="5dp"
 
-                android:id="@+id/tv_typeLeave"
-                android:textSize="15sp"
-                android:textColor="@color/black">
-            </TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:layout_below="@+id/name"
-                android:text="EMPLOYEE ID:"
+                android:text="Position:"
                 android:layout_marginLeft="7dp"
                 android:id="@+id/id"
                 android:textSize="15sp"
@@ -80,48 +64,24 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="10dp"
-                android:text="1234"
+                android:text="Manager"
                 android:layout_toRightOf="@+id/id"
                 android:layout_below="@+id/tv_name"
-                android:id="@+id/tv_id"
+                android:id="@+id/tv_position"
                 android:textSize="15sp"
                 android:textColor="@color/black">
             </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_below="@+id/tv_name"
-                android:text="DEPARTMENT:"
-                android:layout_toLeftOf="@+id/tv_department"
-                android:id="@+id/department"
-                android:textSize="15sp"
-                android:textColor="@color/black">
-            </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/tv_name"
-                android:text="IT"
-                android:layout_marginRight="5dp"
-                android:id="@+id/tv_department"
-                android:textSize="15sp"
-                android:textColor="@color/black">
-            </TextView>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:layout_below="@+id/id"
-                android:text="Description:"
+                android:text="Leave Type:"
                 android:layout_marginLeft="7dp"
                 android:id="@+id/description"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textColor="@color/black">
             </TextView>
             <TextView
@@ -132,9 +92,9 @@
                 android:layout_marginBottom="10dp"
                 android:layout_below="@+id/id"
                 android:layout_toRightOf="@id/description"
-                android:text="may sakit"
-                android:id="@+id/tv_description"
-                android:textSize="17sp"
+                android:text="Sick Leave"
+                android:id="@+id/tv_type"
+                android:textSize="15sp"
                 android:textColor="@color/black">
             </TextView>
             <TextView
@@ -204,12 +164,14 @@
                     android:layout_width="0dp"
                     android:background="@color/yellow"
                     android:layout_height="wrap_content"
+                    android:id="@+id/status_color"
                     android:layout_weight="0.7">
                     <TextView
                         android:layout_alignParentRight="true"
                         android:textColor="@color/black"
                         android:textStyle="bold"
                         android:layout_marginRight="7dp"
+                        android:id="@+id/status"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Pending"></TextView>

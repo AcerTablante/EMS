@@ -71,9 +71,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
-                android:text="Leave Date:"
+                android:text="From"
                 android:layout_below="@id/tv_position_tag"
                 android:id="@+id/tv_leave_tag"
+                android:textColor="@color/black"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:text="To"
+                android:layout_below="@id/tv_leave_tag"
+                android:id="@+id/tv_leave_to"
                 android:textColor="@color/black"
                 ></TextView>
             <TextView
@@ -83,18 +93,29 @@
             android:layout_marginTop="10dp"
             android:layout_below="@id/tv_position"
             android:layout_toRightOf="@+id/tv_leave_tag"
-            android:id="@+id/tv_leave"
+            android:id="@+id/tv_leave_from"
             android:textStyle="bold"
             android:text="November 20, 2022"
             android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/tv_leave_from"
+                android:layout_toRightOf="@+id/tv_leave_to"
+                android:id="@+id/tv_to"
+                android:textStyle="bold"
+                android:text="November 20, 2022"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
-                android:text="Reason:"
-                android:layout_below="@id/tv_leave_tag"
-                android:id="@+id/tv_reason_tag"
+                android:text="Leave Type"
+                android:layout_below="@id/tv_leave_to"
+                android:id="@+id/tv_type_tag"
                 android:textColor="@color/black"
                 ></TextView>
             <TextView
@@ -102,11 +123,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@id/tv_leave"
-            android:layout_toRightOf="@+id/tv_reason_tag"
+            android:layout_below="@id/tv_to"
+            android:layout_toRightOf="@+id/tv_type_tag"
             android:id="@+id/tv_reason"
             android:textStyle="bold"
-            android:text="Feeling Sick"
+            android:text="Sick Leave"
             android:textColor="@color/black"/>
         </RelativeLayout>
     </LinearLayout>
@@ -124,13 +145,14 @@
             android:textColor="@color/black"
             android:backgroundTint="#00FF00"
             android:layout_marginRight="8dp"
+            android:id="@+id/btnApprove"
             android:text="Approve"></Button>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#FF0000"
             android:textColor="@color/black"
-
+            android:id="@+id/btnDecline"
             android:text="Decline"></Button>
 
 

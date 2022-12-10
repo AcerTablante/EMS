@@ -3,10 +3,14 @@ package com.example.emg.admin.employee;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -52,8 +56,11 @@ public class EmployeeActivity extends AdminBase implements EmployeeView, View.On
     EmployeeAdapter employeeAdapter;
     Toolbar toolbar;
     EmployeePresenter presenter;
+    EditText search;
+    Button btn_search;
     DatabaseReference database;
     ArrayList<Employee> list = new ArrayList<>();
+    ArrayList<Employee> searchlist = new ArrayList<>();
     ActionBarDrawerToggle actionBarDrawerToggle;
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -71,6 +78,9 @@ public class EmployeeActivity extends AdminBase implements EmployeeView, View.On
         initializeView();
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
+        search = findViewById(R.id.search);
+        btn_search = findViewById(R.id.btnSearch);
+        btn_search.setOnClickListener(this);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.menu_open,R.string.menu_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
@@ -82,8 +92,6 @@ public class EmployeeActivity extends AdminBase implements EmployeeView, View.On
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //dummy data
         employeeAdapter = new EmployeeAdapter(this,list);
-        recyclerView.setAdapter(employeeAdapter);
-        new ItemTouchHelper(simpleCallback).attachToRecyclerView(recyclerView);
         database = FirebaseDatabase.getInstance().getReference("Employees");
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -100,6 +108,9 @@ public class EmployeeActivity extends AdminBase implements EmployeeView, View.On
 
             }
         });
+        recyclerView.setAdapter(employeeAdapter);
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(recyclerView);
+
     }
     ItemTouchHelper.SimpleCallback simpleCallback=new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
         @Override
@@ -138,6 +149,56 @@ public class EmployeeActivity extends AdminBase implements EmployeeView, View.On
         switch(view.getId()){
             case R.id.btn_add_employee:
                 startActivity(new Intent(EmployeeActivity.this, AddEmployeeActivity.class));
+                break;
+            case R.id.btnSearch:
+                if(search.length()!=0){
+                    for(Employee employee: list){
+                        if(employee.name.contains(search.getText().toString().trim())){
+                            searchlist.add(employee);
+                        }
+                    }
+                    list.clear();
+                    list.addAll(searchlist);
+                    searchlist.clear();
+                    employeeAdapter.notifyDataSetChanged();
+//                        database = FirebaseDatabase.getInstance().getReference("Employees");
+//                        database.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                list.clear();
+//                                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+//                                    Employee employee = dataSnapshot.getValue(Employee.class);
+//                                    if(employee.name.contains(charSequence)){
+//                                        list.add(employee);
+//                                    }
+//                                }
+//                                employeeAdapter.notifyDataSetChanged();
+//                            }
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                            }
+//                        });
+                }else{
+                    list.clear();
+                    database = FirebaseDatabase.getInstance().getReference("Employees");
+                    database.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            list.clear();
+                            for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                                Employee employee = dataSnapshot.getValue(Employee.class);
+                                list.add(employee);
+                            }
+                            employeeAdapter.notifyDataSetChanged();
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
                 break;
         }
 

@@ -49,14 +49,12 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.MyView
              btnEdit = view.findViewById(R.id.btnEdit);
          }
      }
-
     @NonNull
     @Override
     public EmployeeAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.employee_item,parent,false);
         return new MyViewHolder(itemView);
     }
-
     @Override
     public void onBindViewHolder(@NonNull EmployeeAdapter.MyViewHolder holder, int position) {
 

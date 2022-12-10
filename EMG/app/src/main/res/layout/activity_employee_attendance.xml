@@ -5,9 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:id="@+id/drawer_layout"
-    tools:context=".admin.employee.EmployeeActivity">
+    tools:context=".employee.attendance.EmployeeAttendance">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,47 +14,23 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:text="List of Employees"
+                android:text="Attendance"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
         </LinearLayout>
-        <LinearLayout
-            android:weightSum="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <EditText
-                android:layout_weight="0.7"
-                android:layout_width="0dp"
-                android:padding="10dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableLeft="@drawable/ic_baseline_search_24"
-                android:hint="Search"
-                android:id="@+id/search"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/search_bg"
-                android:layout_marginLeft="20dp"></EditText>
-            <Button
-                android:layout_weight="0.3"
-                android:layout_width="0dp"
-                android:id="@+id/btnSearch"
-                android:layout_marginRight="15dp"
-                android:layout_height="wrap_content"
-                android:text="Search"></Button>
-        </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:id="@+id/employeeRecycle"
+            android:id="@+id/attendanceRecycle"
             android:layout_weight="0.8"
             android:layout_marginRight="20dp">
         </androidx.recyclerview.widget.RecyclerView>
@@ -64,17 +39,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="0.1">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:textColor="@color/white"
-                android:id="@+id/btn_add_employee"
-                android:text="Add Employee"></Button>
-
-
-        </LinearLayout>
+            android:layout_weight="0.1"/>
+        <LinearLayout
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="0.1"/>
 
 
     </LinearLayout>
@@ -82,10 +53,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navigationView"
-        app:headerLayout="@layout/header_menu"
-        app:menu="@menu/main_menu"
+        app:headerLayout="@layout/header_menu_employee"
+        app:menu="@menu/employee_menu"
         android:fitsSystemWindows="true"
         android:layout_gravity="start"
         ></com.google.android.material.navigation.NavigationView>
-
 </androidx.drawerlayout.widget.DrawerLayout>

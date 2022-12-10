@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toolbar;
 
 import com.example.emg.R;
@@ -57,6 +58,7 @@ public class NewsActivity extends AdminBase implements View.OnClickListener {
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
         add = findViewById(R.id.btn_add_news);
+
         add.setOnClickListener(this);
         recyclerView = findViewById(R.id.newsRecycle);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

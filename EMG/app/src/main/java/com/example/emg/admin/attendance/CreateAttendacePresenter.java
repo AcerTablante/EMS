@@ -29,7 +29,7 @@ public class CreateAttendacePresenter {
     void addAttendance(String id){
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("d-MM-yyyy", Locale.getDefault());
         String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         String formattedDate = df.format(c);
         //Check if user exist
@@ -38,7 +38,7 @@ public class CreateAttendacePresenter {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child(id).exists()){
                     Employee employee = snapshot.child(id).getValue(Employee.class);
-                    Attendance attendance = new Attendance(id,formattedDate,"TIME IN",currentTime);
+                    Attendance attendance = new Attendance(id,formattedDate,"TIME IN",currentTime,"-");
                     attendance.setName(employee.name);
                     DatabaseReference attendance_ref = myRef.child("Attendance").child(formattedDate).child(id);
                     attendance_ref.setValue(attendance).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -62,5 +62,38 @@ public class CreateAttendacePresenter {
             }
         });
     }
+    void timeOut(String id){
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+        SimpleDateFormat df = new SimpleDateFormat("d-MM-yyyy", Locale.getDefault());
+        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        String formattedDate = df.format(c);
+        myRef.child("Employees").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(id).exists()){
+                    DatabaseReference attendance_ref = myRef.child("Attendance").child(formattedDate).child(id).child("time_out");
+                    attendance_ref.setValue(currentTime).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            view.attendanceSuccess();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            view.attendanceFailed(e.getLocalizedMessage());
+                        }
+                    });
+                }else{
+                    view.attendanceFailed("Invalid barcode");
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
 }

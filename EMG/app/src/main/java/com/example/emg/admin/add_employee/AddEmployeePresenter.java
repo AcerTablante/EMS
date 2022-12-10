@@ -87,11 +87,16 @@ public class AddEmployeePresenter {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String old_password = dataSnapshot.getValue(String.class);
                 FirebaseAuth user = FirebaseAuth.getInstance();
-                user.signInWithEmailAndPassword(employee.email,old_password);
-                user.getCurrentUser().updatePassword(employee.password).addOnFailureListener(new OnFailureListener() {
+                user.signInWithEmailAndPassword(employee.email,old_password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                    view.message(e.getLocalizedMessage());
+                    public void onSuccess(AuthResult authResult) {
+                        user.getCurrentUser().updatePassword(employee.password).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                view.message(e.getLocalizedMessage());
+                            }
+                        });
+                        FirebaseAuth.getInstance().signOut();
                     }
                 });
             }

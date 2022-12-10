@@ -4,26 +4,31 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-feature
+
         android:name="android.hardware.camera"
         android:required="false" />
 
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/emp_icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="EMS"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EMG">
-        <activity android:name=".admin.create_news.CreateNewsActivity"
-            android:theme="@style/Theme.EMG_NO_ACTION"></activity>
+        <activity android:name=".employee.attendance.EmployeeAttendance"></activity>
+        <activity android:name=".admin.leave.MainLeave" />
+        <activity
+            android:name=".admin.create_news.CreateNewsActivity"
+            android:theme="@style/Theme.EMG_NO_ACTION" />
         <activity android:name=".admin.news.NewsActivity" />
         <activity
             android:name=".admin.view_employee.ViewEmployeeActivity"
             android:theme="@style/Theme.EMG_NO_ACTION" />
-        <activity android:name=".employee.calendar.Calendar" />
+        <activity android:name=".employee.calendar.EmployeeCalendar" />
         <activity android:name=".employee.leave_status.LeaveStatus" />
         <activity android:name=".employee.leave_request.LeaveRequestActivity" />
         <activity android:name=".employee.dashboard.EmployeeDashboard" />

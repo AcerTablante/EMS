@@ -48,6 +48,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/employee_box"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -142,6 +143,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="4"
+                             android:id="@+id/leaves"
                                 android:textStyle="bold"
                                 android:gravity="center"
                                 android:textSize="40sp"
@@ -168,6 +170,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/approve_box"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -204,6 +207,7 @@
                                 android:text="2"
                                 android:textStyle="bold"
                                 android:gravity="center"
+                                android:id="@+id/approve"
                                 android:textSize="40sp"
                                 android:textColor="@color/black"
                                 android:layout_gravity="right"
@@ -228,6 +232,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:id="@+id/pending_box"
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="wrap_content"
@@ -267,6 +272,7 @@
                                 android:text="10"
                                 android:textStyle="bold"
                                 android:gravity="center"
+                                android:id="@+id/pendings"
                                 android:textSize="40sp"
                                 android:textColor="@color/black"
                                 android:layout_gravity="right"

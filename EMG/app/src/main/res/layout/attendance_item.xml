@@ -9,6 +9,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/profile_pic"
+        android:layout_marginTop="7dp"
         android:src="@drawable/emp_icon"
         ></de.hdodenhof.circleimageview.CircleImageView>
     <LinearLayout
@@ -17,7 +18,7 @@
         android:layout_toEndOf="@+id/profile_pic"
         android:layout_marginStart="5dp"
         android:orientation="vertical"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:layout_toRightOf="@+id/profile_pic"
         android:layout_marginLeft="5dp">
 
@@ -40,7 +41,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/btnDelete"
+        android:id="@+id/tv_present"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -53,12 +54,57 @@
         android:layout_toLeftOf="@id/status_img"
         android:textAllCaps="false"></TextView>
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/status_img"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
         android:src="@drawable/check"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TIME IN:"
+        android:textStyle="bold"
+        android:id="@+id/timein_tag"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/status_img"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3:00"
+        android:id="@+id/tv_time_in"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/status_img"
+        android:layout_toRightOf="@id/timein_tag"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TIME OUT:"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:id="@+id/timeout_tag"
+        android:textColor="@color/black"
+        android:layout_marginLeft="30dp"
+        android:layout_toRightOf="@id/tv_time_in"
+
+        android:layout_below="@+id/status_img"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/tv_time_out"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/status_img"
+        android:layout_toRightOf="@id/timeout_tag"/>
+
 
     <!--    <Button-->
     <!--        android:id="@+id/btnfollow"-->

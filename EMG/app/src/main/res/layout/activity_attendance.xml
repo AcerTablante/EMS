@@ -24,16 +24,20 @@
                 android:text="Attendance"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:text="10-10-2020"
-                android:id="@+id/date"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
         </LinearLayout>
+        <EditText
+            android:background="@drawable/search_bg"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:padding="5dp"
+            android:editable="false"
+            android:gravity="center"
+            android:text="10-10-2020"
+            android:id="@+id/date"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,16 +58,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginRight="20dp"
             android:layout_weight="0.1">
             <Button
+                android:id="@+id/export"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:textColor="@color/white"
-                android:id="@+id/btn_attendance_history"
-                android:text="View History"></Button>
-
-
+                android:text="Export"></Button>
         </LinearLayout>
         <LinearLayout
             android:layout_gravity="right"
